@@ -1,0 +1,109 @@
+
+<html>
+<head>
+	<title>随机数抽取</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			font-size: 48px;
+			color: #333;
+		}
+		.container {
+			margin: 50px auto;
+			width: 80%;
+			max-width: 800px;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		.form-group {
+			margin-bottom: 20px;
+		}
+		label {
+			display: block;
+			font-size: 24px;
+			color: #333;
+			margin-bottom: 10px;
+		}
+		input[type="number"] {
+			padding: 10px;
+			font-size: 24px;
+			border-radius: 5px;
+			border: none;
+			background-color: #f2f2f2;
+			color: #333;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		button {
+			padding: 10px 20px;
+			font-size: 24px;
+			border-radius: 5px;
+			border: none;
+			background-color: #333;
+			color: #fff;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		button:hover {
+			background-color: #666;
+		}
+		.result {
+			margin-top: 50px;
+			font-size: 36px;
+			color: #333;
+			text-align: center;
+			animation: shake 0.5s ease;
+			animation-iteration-count: 1;
+		}
+		@keyframes shake {
+			0% { transform: translateX(0); }
+			25% { transform: translateX(-10px); }
+			50% { transform: translateX(10px); }
+			75% { transform: translateX(-10px); }
+			100% { transform: translateX(0); }
+		}
+	</style>
+</head>
+<body>
+	<h1>随机数抽取</h1>
+	<div class="container">
+		<form>
+			<div class="form-group">
+				<label for="range">抽取的范围:</label>
+				<input type="number" id="range" name="range" min="1" max="100" value="50">
+			</div>
+			<div class="form-group">
+				<label for="count">个数:</label>
+				<input type="number" id="count" name="count" min="1" max="10" value="1">
+			</div>
+			<button type="button" onclick="pickNames()">Pick Names</button>
+		</form>
+		<div class="result" id="result"></div>
+	</div>
+	<script>
+		function pickNames() {
+			var range = document.getElementById("range").value;
+			var count = document.getElementById("count").value;
+			var names = [];
+			for (var i = 1; i <= range; i++) {
+				names.push(i);
+			}
+			var result = "";
+			for (var i = 0; i < count; i++) {
+				var index = Math.floor(Math.random() * names.length);
+				result += names[index] + " ";
+				names.splice(index, 1);
+			}
+			document.getElementById("result").innerHTML = result;
+		}
+	</script>
+</body>
+</html>
+
